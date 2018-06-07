@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>vue样式绑定</title>
+		<script src="src/vue.js"></script>
+		<style>
+			.activated{
+				color: red;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<!--<div @click="handleDivClick"
+				 :class="[activated]">hello world-->
+<!--			</div>-->
+			<div :style="[styleObj,{fontSize:'20px'}]"
+				 @click="handleDivClick">
+				 hello world
+			</div>
+		</div>
+		<script>			
+			var vm = new Vue({
+				el:"#app",
+				data(){
+					return{//数组添加方式
+//					 activated:""
+						styleObj:{
+							color:"black"
+						}
+					}
+				},
+				methods:{
+					handleDivClick:function(){
+						this.styleObj.color = this.styleObj.color === "black" ? "red" : "black" 
+					}
+//					handleDivClick:function(){//取反类
+////					 this.isActivated = !this.isActivated
+//
+////					if(this.activated === "activated"){
+////					 this.activated = ""
+////					}else{
+////						this.activated = "activated"
+////					}
+//					this.activated = this.activated === "activated" ? "": "activated"
+//				}
+			  }
+		   })
+			
+		</script>
+	</body>
+</html>

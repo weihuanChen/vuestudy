@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>条件渲染</title>
+		<script src="src/vue.js"></script>
+	</head>
+	<body>
+		<div id="app">
+			<!--<div v-if="show">{{message}}</div>
+			<div v-else="show">bye world</div>-->
+			<!--<div v-show="show">{{message}}</div>-->
+			<!--<div v-if="show === 'a' ">this is a</div>
+			<div v-else-if="show === 'b'"> this is b</div>
+			<div v-else="show === 'c'"> this is c</div>-->
+			<div v-if="show"><!--vue会尽可能的复用页面dom,需要赋予key防止复用-->
+				用户名:<input key="username"/>
+			</div>
+			<div v-else>
+				邮箱名:<input key="password"/>
+			</div>
+		</div>
+		<script>
+			var vm = new Vue({
+				el:"#app",
+				data(){
+					return{
+						show:false,
+						message:"hello world"
+					}
+				},
+				
+			})
+		</script>
+	</body>
+</html>

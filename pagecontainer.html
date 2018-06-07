@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="src/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<template>
+			<div class="pageContainer">
+				<ul class="pagesInner">
+					<li class="page">
+						<span class="fa fa-chevron-left" aria-hidden="true"></span>
+					</li>
+					<li class="page" v-for="(item,index) in pages" :key="index">
+						<span>{{item}}</span>
+					</li>
+					<li class="page">
+						<span class="fa fa-chevron-right" aria-hidden="true"></span>
+					</li>
+				</ul>
+			</div>
+		</template>
+		<!--<script>
+			export default{
+				computed:{//vue属性
+					pages(){
+						return 10;
+					}
+				}
+			};
+		</script>-->
+	</body>
+</html>

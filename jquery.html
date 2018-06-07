@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="http://cdn.static.runoob.com/libs/jquery/1.10.2/jquery.min.js"></script>
+	</head>
+	<body>
+		<div>
+			<input type="text" id="input"/>
+			<button id="btn">提交</button>
+			<ul id="list"></ul>
+		</div>
+		<script type="text/javascript">
+			function page(){//m 模型 v 视图 p 控制器    设计
+				
+			}
+			$.extend(page.prototype, {
+				init:function(){
+					this.bindEvents()
+				},
+				bindEvents:function(){
+					var btn = $('#btn');
+					btn.on('click',$.proxy(this.handleBtnClick,this))
+				},
+				handleBtnClick:function(){
+					var inputElem = $("#input");
+					var inputValue = inputElem.val();
+					var ulElem = $("#list");
+					ulElem.append('<li>'+inputValue+'</li>');
+					inputElem.val('');
+				}
+			});
+			var page = new page();
+			page.init();
+		</script>
+	</body>
+</html>

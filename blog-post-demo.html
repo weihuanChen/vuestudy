@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="src/vue.js"></script>
+	</head>
+	<body>
+		<div id="blog-post-component">
+			<blog-post v-for="post in posts" v-bind:key="post.id" v-bind:title="post.title"></blog-post>
+			<blog-post ></blog-post>
+			<blog-post ></blog-post>
+		</div>
+		<script>
+			Vue.component('blog-post',{//组件注册需要在实例化之前
+				props:['title'],
+				template:'<h3>{{ title }}</h3>'
+			})
+			new Vue({
+				el:'#blog-post-component',
+				data:{
+					posts:[
+					{
+						id:1,title:'我的Vue旅程'
+					},
+					{
+						id:2,title:'用Vue写博客'
+					},
+					{
+						id:3,title:'Vue如此有趣'
+					}
+					]
+				}
+			})
+		</script>
+	</body>
+</html>
