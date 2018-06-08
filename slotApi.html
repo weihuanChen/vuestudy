@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>vue插槽(slot),用于父组件传递子组件dom结构</title>
+		<script src="src/vue.js"></script>
+	</head>
+	<body>
+		<div id="app">
+			<body-content>
+				<div class="header" slot="header">header</div>
+				<div class="footer" slot="footer">footer</div>
+<!--				<span>dell</span>-->
+			</body-content>
+		</div>
+		<script>
+			//slot可以定义默认值，用于父向子传递的占位,可以取一个具名插槽
+			Vue.component('body-content',{
+//				props:['content'],										
+				template:`<div>
+							<slot name='header'></slot>
+						   	<div class='content'>content</div>
+						   	<slot name='footer'></slot>
+						  </div>`
+			})
+			var vm = new Vue({
+				el:"#app",
+				
+			})
+		</script>
+	</body>
+</html>

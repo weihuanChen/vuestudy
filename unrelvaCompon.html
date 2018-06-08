@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>非父子组件传值(bus/总线/发布订阅模式/观察者模式)</title>
+		<script src="src/vue.js"></script>
+	</head>
+	<body>
+		
+		<div id="app">
+			<child content="DELL"></child>
+			<child content="lee"></child>
+		</div>
+		<script>
+			//挂载vue上bus
+			Vue.prototype.bus = new Vue();
+			Vue.component('child',{
+				data(){
+					//父组件传来的数据需要改变成子组件的数据才能进行改变
+					return{
+						selfContent:this.content
+					}
+				},
+				props:{
+					content:String
+				},
+				template:'<div @click="handleClick">{{selfContent}}</div>',
+				methods:{
+					handleClick:function(){
+						this.bus.$emit('change',this.selfContent)
+					}
+				},
+				mounted:function(){//在钩子函数渲染上调用bus实例，并监听change事件
+					//保存作用域
+					var this_ = this
+					this.bus.$on('change',function(msg){
+						this_.selfContent = msg;
+					})
+				}
+			})
+			var vm = new Vue({
+				el:"#app"
+			})
+		</script>
+	</body>
+</html>
