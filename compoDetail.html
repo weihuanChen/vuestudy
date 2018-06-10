@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>组件相关细节</title>
+		<script src="src/vue.js"></script>
+	</head>
+	<body>
+		<div id="app">
+			<!--<table>
+				<tbody>
+					<!--<tr is="row"></tr>
+					<tr is="row"></tr>
+					<tr is="row"></tr>
+				</tbody>
+			</table>-->
+			<!--<div ref='hello' 
+				@click="handleClick">hello world
+			</div>-->
+			<div>
+				<counter ref="one"@change="handleChange">
+					
+				</counter >
+				<counter ref="two"@change="handleChange">
+					
+				</counter>
+				<div>
+					{{total}}
+				</div>
+			</div>
+		</div>
+		<script>
+//			Vue.component('row',{
+//				data(){//在非根组件中，data不能直接定义data对象，必须是函数返回对象，让子组件独立拥有数据
+//					return{
+//					content:'this is a row'
+//					}
+//				},
+//				template:'<tr><td>{{content}}</td></tr>'
+//			})
+			Vue.component('counter',{
+				template:'<div @click="handleClick">{{number}}</div>',
+				data(){
+					return{
+						number:0
+					}
+				},
+				methods:{
+					handleClick:function(){
+						this.number ++ 
+						this.$emit('change')
+					}
+				}
+			})
+			var vm = new Vue({
+				el:"#app",
+				data(){
+					return{
+						total:0
+					}
+				},
+				methods:{
+//					handleClick:function(){//指向所有的引用中的引用
+//						//this.$refs.ref;
+//						this.number ++ ;
+//						
+//					}
+					handleChange:function(){
+						this.total = this.$refs.one.number + this.$refs.two.number
+						console.log(this.$refs.one.number)
+						console.log(this.$refs.two.number)
+					}
+				},
+			})
+		</script>
+	</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>组件参数校验，非props特性</title>
+		<script src="src/vue.js"></script>
+	</head>
+	<body>
+		<div id="app">
+			<child content="hello world"></child>
+		</div>
+		<script>
+			//子组件接收的参数约束,在props中定义
+			Vue.component('child',{
+				//指定一个content属性，定义类型，并且标注为必须传值
+				props:{//具有父子组件对应的props属性的关系，props特性，不定义就无法使用
+					content:{
+						type:String,
+//						required:false,
+//						default:'default value',
+//						validator:function(value){//校验参数必须大于
+//							return (value.length > 5)
+//						}
+					},
+//					content:[String,Number]
+				},
+				data(){
+					return{
+						child:this.content	
+					}
+				},
+				template:'<div>{{content}}</div>'
+			})
+			var vm = new Vue({
+				el:"#app"
+			})
+		</script>
+	</body>
+</html>

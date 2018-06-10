@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>模板语法</title>
+		<script src="src/vue.js"></script>
+	</head>
+	<body>
+		<div id="app">
+			{{
+				name + ' lee'
+			}}
+			<div v-text="name"></div><!--js表达式,做过转义-->
+			<div v-html="name"></div><!--不做解析,为html-->
+		</div>
+		<script>
+			//vue模板语法
+			var vm = new Vue({
+				el:"#app",
+				data(){
+					return{
+						name:"alice"
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

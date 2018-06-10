@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>css使用animate.css库</title>
+		<script src="src/vue.js"></script>	
+		<link rel="stylesheet" href="css/animate.css" />
+		<style>
+			/*@keyframes bounce-in{
+			0%{
+				transform: scale(0);
+			}
+			50%{
+				transform: scale(1.5);
+			}
+			100%{
+				transform: scale(1);
+			}
+			}*/
+			.fade-enter,
+			.fade-leave-to{
+				opacity: 0;
+			}
+			.fade-enter-active,
+			.fade-leave-active{
+				transition: opacity  3s
+				/*transform-origin: left center;
+				animation: bounce-in 1s;*/
+			}
+			/*.v-leave-to{
+				/*opacity: 0;
+			}*/
+			/*.leave{
+				transform-origin: left center; 
+				/*transition: opacity 1.5s;*/
+/*				animation: bounce-in 1s reverse;
+			}*/
+		</style>
+	</head>
+	<body>
+		
+		<div id="root">
+			<!--在transition中使用type='transition',使两种形式的动画以transition为准(时间上)!-->
+			<!--自定动画时长:duration:''{enter:1000,leave"10000"}-->
+			<transition name="fade"
+				type="transition"
+				appear
+				enter-active-class="animated swing fade-enter-active"
+				leave-active-class="animated shake fade-leave-active"
+				appear-active-class="animated swing">
+				<div v-if="show">hello world</div>	
+			</transition>
+			
+			<button @click="handleClick">change</button>
+		</div>
+		<script>
+			//元素被transition包裹之后，会自动分析元素的css结构
+			var vm = new Vue({
+				el:'#root',
+				data:{
+					show:true
+				},
+				methods:{
+					handleClick:function(){
+						this.show = !this.show
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

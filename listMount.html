@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>列表渲染</title>
+		<script src="src/vue.js"></script>
+	</head>
+	<body>
+		<div id="app">
+			<!--<template v-for="(item,index) of list" 
+				 	  :key="item.id">
+			<div ><!--key一波使用后端返回的值-->
+				<!--{{item.text}}----{{index}}
+			</div>
+			<span>
+				{{item.text}}
+			</span>
+			</template>-->
+			<div v-for="(item,key,index) of userInfo">
+				{{item}}----{{key}}----{{index}}
+			</div>
+		</div>
+		<script>
+			//vue中不能通过数组下标操作数组，要通过vue自带的变异方法
+			//push pop shift unshift splice sort reverse ,需要改变数据的引用,从而用于变化
+			var vm = new Vue({
+				el:"#app",
+				data() {
+					return{
+//						list: [
+//						{
+//						text:"hello",
+//						id:"01000155"
+//						},
+//						{text:"dell",
+//						id:"0150475"
+//						},
+//						
+//						{
+//							text:"lee",
+//							id:"85552422"
+//						},
+//						]
+//						userInfo:{//对象添加使用Vue.set方法,vm.$set
+//							name:"lee",
+//							age:28,
+//							gender:"male",
+//							salary:"secret"
+//						}
+						userInfo:[1,2,3,4]
+					}
+				}
+			})
+		</script>
+	</body>
+</html>
